@@ -10,20 +10,24 @@
     "build:doc:src": "esdoc -c esdoc.json",
     "prebuild:doc:api": "shx rm -rf docs/api",
     "build:doc:api": "apidoc -i src -o docs/api -f \".*\\.routes.js$\" -f \".*\\.apidoc.js$\"",
+
     "client:test:lint": "standard 'src/client/**/*.js' --verbose --parser babel-eslint | snazzy",
     "client:test:unit": "babel-tape-runner src/client/**/*.spec.js | faucet",
-    "prebuild:client": "shx rm -rf dist/client; shx rm -f stats-dst.html",
+    "prebuild:client": "shx rm -rf dist/client; shx rm -f dist/stats-dst.html",
     "build:client": "webpack --progress --config webpack.config.prod.js",
-    "postbuild:client": "opn stats-dst.html",
+    "postbuild:client": "opn dist/stats-dst.html",
     "dev:client": "webpack-dev-server --config webpack.config.dev.js --open",
+
     "server:test:lint": "standard 'src/server/**/*.js' --verbose --parser babel-eslint | snazzy",
     "server:test:unit": "babel-tape-runner src/server/**/*.spec.js | faucet",
     "prebuild:server": "shx rm -rf dist/server",
     "build:server": "babel src -d dist/server -s --copy-files",
     "dev:server": "nodemon --watch 'src/server/**/*.js' --exec npm run start:dev",
+
     "start:dev": "node --require dotenv/config --require babel-register src/server/index.js",
     "start:prod": "node --require dotenv/config dist/server/index.js",
     "start": "node dist/server/index.js",
+
     "test:unit": "run-s client:test:lint server:test:lint",
     "test:lint": "run-s client:test:unit server:test:unit",
     "test": "run-s test:lint test:unit",
