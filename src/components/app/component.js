@@ -117,6 +117,11 @@ class App extends Component {
           {
             this.getSearchbar()
           }
+
+          {
+            searching && <hr className={styles.hr}/>
+          }
+
           {
             this.getLoadingAnimation()
           }
