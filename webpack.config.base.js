@@ -48,11 +48,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        use: [ 'babel-loader' ],
-        exclude: /node_modules/
-      },
-      {
         test: /\.(woff|woff2|eot|ttf)$/,
         use: {
           loader: 'url-loader',

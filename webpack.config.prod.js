@@ -6,17 +6,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const Visualizer = require('webpack-visualizer-plugin')
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
-const OfflinePlugin = require('offline-plugin')
 const base = require('./webpack.config.base')
 
 const config = base.merge({
-  // TODO: Enable
-  // entry: {
-  //   app: [
-  //     // Register service worker
-  //     './src/core/service-worker.js'
-  //   ]
-  // },
   output: {
     // add chaching
     filename: '[name].[chunkhash].js'
@@ -30,6 +22,21 @@ const config = base.merge({
   profile: true,
   module: {
     rules: [
+      {
+        test: /\.jsx?$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            babelrc: false,
+            presets: [
+              ['es2015', { 'modules': false }],
+              'stage-0',
+              'react'
+            ]
+          }
+        },
+        exclude: /node_modules/
+      },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
@@ -59,22 +66,6 @@ const config = base.merge({
       {
         test: /\.(jpg|png|gif|svg)$/,
         use: 'file-loader'
-        // TODO: Switch to this loader
-        // loaders: [
-        //   'file-loader',
-        //   {
-        //     loader: 'image-webpack-loader',
-        //     query: {
-        //       progressive: true,
-        //       optimizationLevel: 7,
-        //       interlaced: false,
-        //       pngquant: {
-        //         quality: '65-90',
-        //         speed: 4
-        //       }
-        //     }
-        //   }
-        // ]
       }
     ]
   },
@@ -127,55 +118,40 @@ const config = base.merge({
     new Visualizer({
       filename: '../stats-dst.html'
     }),
-    // TODO: Enable
     // Create icons / manifest
-    // new FaviconsWebpackPlugin({
-    //   logo: './src/logo.png',
-    //   emitStats: false,
-    //   statsFilename: 'iconstats-[hash].json',
-    //   persistentCache: true,
-    //   inject: true,
-    //   background: '#fff',
-    //   title: 'Mycure App',
-    //   online: true,
-    //   preferOnline: true,
-    //   icons: {
-    //     // FIXME: inject manifest to html
-    //     android: true,
-    //     appleIcon: true,
-    //     appleStartup: true,
-    //     coast: true,
-    //     firefox: true,
-    //     opengraph: true,
-    //     twitter: true,
-    //     yandex: true,
-    //     windows: true,
-    //     favicons: true
-    //   },
-    //   // FIXME: Extra Manifest details for android
-    //   extraManifest: {
-    //     appDescription: 'Mycure V3 Webapp',
-    //     version: '3.0',
-    //     // For mobile
-    //     start_url: '/?homescreen=1',
-    //     orientation: 'portrait',
-    //     display: 'standalone'
-    //   }
-    // }),
-    // TODO: Enable
-    // new OfflinePlugin({
-    //   caches: 'all',
-    //   excludes: [
-    //     // assets's maps
-    //     '*.map'
-    //   ],
-    //   ServiceWorker: {
-    //     events: true,
-    //     output: 'service-worker.js',
-    //     navigateFallbackURL: '/'
-    //   },
-    //   AppCache: false
-    // })
+    new FaviconsWebpackPlugin({
+      logo: './src/logo.png',
+      emitStats: false,
+      statsFilename: 'iconstats-[hash].json',
+      persistentCache: true,
+      inject: true,
+      background: '#fff',
+      title: 'Mycure App',
+      online: true,
+      preferOnline: true,
+      icons: {
+        // FIXME: inject manifest to html
+        android: true,
+        appleIcon: true,
+        appleStartup: true,
+        coast: true,
+        firefox: true,
+        opengraph: true,
+        twitter: true,
+        yandex: true,
+        windows: true,
+        favicons: true
+      },
+      // FIXME: Extra Manifest details for android
+      extraManifest: {
+        appDescription: 'Mycure V3 Webapp',
+        version: '3.0',
+        // For mobile
+        start_url: '/?homescreen=1',
+        orientation: 'portrait',
+        display: 'standalone'
+      }
+    })
   ]
 })
 

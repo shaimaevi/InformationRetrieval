@@ -61,6 +61,22 @@ const config = base.merge({
   module: {
     rules: [
       {
+        test: /\.jsx?$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            babelrc: false,
+            presets: [
+              ['es2015', { 'modules': false }],
+              'stage-0',
+              'react'
+            ],
+            plugins: ['react-hot-loader/babel']
+          }
+        },
+        exclude: /node_modules/
+      },
+      {
         test: /\.css$/,
         use: [
           'style-loader',
