@@ -1,45 +1,55 @@
+
 .root {
-  width: 100vw;
-  height: 100vh;
   // background-color: red;
 }
 
 .root-home {
+  height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
+.root-searching {
+  padding: 20px;
+}
 
 .searchbar {
   // background-color: blue;
   display: flex;
+  margin-bottom: 15px
 }
 
 .searchbar-home {
-  min-width: 500px;
+  min-width: 600px;
   flex-direction: column;
 }
 
 .searchbar-searching {
-  max-width: 400px;
-  flex-direction: row;
+  max-width: 700px;
   align-items: center;
 }
 
 .searchbar-logo {
   display: flex;
   justify-content: center;
-  // background-color: violet;
+}
+
+.searchbar-field {
+  flex: 1
 }
 
 .searchbar-padding-home {
-  height: 10px;
+  height: 25px;
 }
 
 .searchbar-padding-searching {
-  width: 10px;
+  width: 18px;
+}
+
+.hr {
+  border-top: 1px solid lightgray;
 }
 
 .results {
