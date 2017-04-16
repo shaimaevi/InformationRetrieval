@@ -9,19 +9,15 @@ const log = require('debug')('api/engine/routes')
 const router = express.Router()
 
 router.get('/', async (req, res) => {
+  const searchString = req.query.searchString
   try {
-    const searchString = req.query.searchString
-
-    log(`Searching '${searchString}'`)
-
     const result = await controller.search(searchString)
 
-    log(`Result for '${searchString}'`, result)
+    log(result && result.length, `results for '${searchString}'`)
 
     res.json({ result })
-
   } catch (err) {
-    log(err)
+    log(`Error searching '${err}'`, err)
 
     res.json({ message: err.message })
   }
