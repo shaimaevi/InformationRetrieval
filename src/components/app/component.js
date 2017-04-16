@@ -30,7 +30,7 @@ class App extends Component {
   state = {
     results: [],
     meta: null,
-    searching: true,
+    searching: false,
     loading: false,
     resultToView: null
   }
@@ -188,7 +188,7 @@ class App extends Component {
           }
 
           {
-            (!_.isEmpty(results) && !loading) &&
+            (searching && !loading) &&
             <Results
               meta={meta}
               data={results}

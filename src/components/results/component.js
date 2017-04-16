@@ -59,6 +59,13 @@ class ModuleComponent extends Component {
   render () {
     const { data, onResultSelected, meta } = this.props
     const { currentPage, itemsToView } = this.state
+
+    if (_.isEmpty(data)) return (
+      <div className={styles['no-result-root']}>
+        <h1> No results </h1>
+      </div>
+    )
+
     return (
       <div className={styles.root}>
         <span> { data.length } Results in { meta && meta.timeElapsed || 0 } ms </span>
