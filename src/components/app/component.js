@@ -4,13 +4,13 @@
 import React from 'react'
 import styles from './style.scss'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import SearchBar from 'Components/searchbar'
 
 const Component = props => {
   return (
     <MuiThemeProvider>
       <div className={styles.root}>
-        <span> Sawasdee! App Component Here </span>
-        { props.children }
+        <SearchBar />
       </div>
     </MuiThemeProvider>
   )
