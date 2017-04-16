@@ -44,6 +44,7 @@
     "build": "run-p build:server build:client"
   },
   "dependencies": {
+    "bluebird": "3.5.0",
     "body-parser": "1.17.1",
     "chalk": "1.1.3",
     "classnames": "2.2.5",
@@ -63,7 +64,8 @@
     "react-dom": "15.4.2",
     "react-tap-event-plugin": "2.0.1",
     "regenerator-runtime": "0.10.3",
-    "request": "2.81.0"
+    "superagent": "3.5.2",
+    "superagent-bluebird-promise": "4.2.0"
   },
   "devDependencies": {
     "apidoc": "0.17.5",

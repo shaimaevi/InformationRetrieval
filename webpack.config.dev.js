@@ -4,8 +4,12 @@
 const webpack = require('webpack')
 const base = require('./webpack.config.base')
 
-const HOST = process.env.HOST || 'localhost' // change to '0.0.0.0' to expose externally
-const PORT = process.env.PORT || 9090
+const HOST = process.env.HOST || 'localhost'
+const PORT = process.env.PORT || 3000
+const PROXY_URL = `http://${HOST}:${PORT}`
+
+const PROXY_HOST = process.env.PROXY_HOST /* change to '0.0.0.0' to expose externally */ || HOST
+const PROXY_PORT = process.env.PROXY_PORT || 9090
 
 const config = base.merge({
   entry: {
@@ -14,7 +18,7 @@ const config = base.merge({
       'react-hot-loader/patch',
       // bundle the client for webpack-dev-server
       // and connect to the provided endpoint
-      `webpack-dev-server/client?http://${HOST}:${PORT}`,
+      `webpack-dev-server/client?http://${PROXY_HOST}:${PROXY_PORT}`,
       // bundle the client for hot reloading
       // only- means to only hot reload for successful updates
       'webpack/hot/only-dev-server'
@@ -33,7 +37,7 @@ const config = base.merge({
     // Gzip compression
     compress: true,
     // Development port
-    port: PORT,
+    port: PROXY_PORT,
     // Minimal Logging
     clientLogLevel: 'none',
     // noInfo: true,
@@ -44,7 +48,7 @@ const config = base.merge({
     // For SPA
     historyApiFallback: true,
     // For external use
-    host: HOST,
+    host: PROXY_HOST,
     // HMR
     hot: true,
     // Config for minimal console.log mess
@@ -56,6 +60,15 @@ const config = base.merge({
       timings: false,
       chunks: false,
       chunkModules: false
+    },
+    // Proxy
+    proxy: {
+      '/api': {
+        target: PROXY_URL,
+        secure: false,
+        changeOrigin: true,
+        default: false
+      }
     }
   },
   module: {
