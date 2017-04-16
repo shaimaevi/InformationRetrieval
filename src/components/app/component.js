@@ -69,11 +69,13 @@ class App extends Component {
           />
         </div>
         <div className={styles[`searchbar-padding-${searching ? 'searching': 'home'}`]}/>
-        <SearchBar
+        <div className={styles['searchbar-field']}>
+          <SearchBar
           onSearch={this.onSearch}
           loading={loading}
           showEasterEgg={!searching}
         />
+        </div>
       </div>
     )
   }
@@ -109,7 +111,7 @@ class App extends Component {
         <div
           className={cn({
             [styles.root]: true,
-            [styles['root-home']]: !searching
+            [styles[`root-${searching ? 'searching': 'home'}`]]: true
           })}
         >
           {
