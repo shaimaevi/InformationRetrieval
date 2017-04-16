@@ -68,13 +68,10 @@ CMSC 191 search engine client
 - `MYSQL_USER` - mysql db user, defaults to `root`
 - `MYSQL_PASS` - mysql db password
 - `MYSQL_DATABASE` - mysql db to use
-#### For scripts
-- `RETRIEVE_MONGO_URI` - retrieval mongodb database uri
-- `IP` - used by browser sync
 
 #### For dev
 - `SERVE_DOCS` - server documentation routes, enable `graphiql`
-- `PROXY_URL` - will be used by `webpack-dev-server`
+- `PROXY_HOST` - will be used by `webpack-dev-server`
 - `PROXY_PORT` - will be used by `webpack-dev-server`
 - `HOST` - will be used webpack
 - `DEBUG` - will be used to debug by module
