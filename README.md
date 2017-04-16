@@ -13,46 +13,52 @@ CMSC 191 search engine client
 
 - clone this repo and cd to InformationRetrieval
 
-      git clone https://github.com/shaimaevi/InformationRetrieval.git
-      cd InformationRetrieval
+```sh
+  git clone https://github.com/shaimaevi/InformationRetrieval.git
+  cd InformationRetrieval
+```
 
 - create a `.env` file
 
-      // .env
+```sh
+  // .env
+  
+  # ==================================
+  #              APP
+  # ==================================
 
-      # ==================================
-      #              APP
-      # ==================================
+  PORT=3000
 
-      PORT=3000
+  MYSQL_HOST=localhost
+  MYSQL_USER=root
+  MYSQL_PASS=<your password here>
+  MYSQL_DATABASE=ir-mysql
 
-      MYSQL_HOST=localhost
-      MYSQL_USER=root
-      MYSQL_PASS=<your password here>
-      MYSQL_DATABASE=ir-mysql
+  # ==================================
+  #           DEV MODE
+  # ==================================
 
-      # ==================================
-      #           DEV MODE
-      # ==================================
+  SERVE_DOCS=true
 
-      SERVE_DOCS=true
+  # Proxy
+  PROXY_HOST=0.0.0.0
+  PROXY_PORT=9090
 
-      # Proxy
-      PROXY_HOST=0.0.0.0
-      PROXY_PORT=9090
+  # ==================================
+  #          DEBUG MODULES
+  # ==================================
 
-      # ==================================
-      #          DEBUG MODULES
-      # ==================================
-
-      DEBUG=server,api*
-
+  DEBUG=server,api*
+```
 
 - run
-
-      npm install
-      npm run dev:server
-      npm run dev:client
+      
+      
+```sh
+  npm install
+  npm run dev:server
+  npm run dev:client
+```
 
 ### **Env**
 
