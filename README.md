@@ -4,9 +4,18 @@
 
 CMSC 191 search engine client
 
+## Prerequisites
+
+- nodejs
+- mysql client
+
 ## Development
 
-### Env
+    npm install
+    npm run dev:server
+    npm run dev:client
+
+### **Env**
 
 #### Required
 - `PORT` - port used, defaults to `3000`
