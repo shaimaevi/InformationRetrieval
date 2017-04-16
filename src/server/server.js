@@ -11,6 +11,8 @@ import gzip from 'express-static-gzip'
 
 const log = require('debug')('server')
 
+const PORT = process.env.PORT || 3000
+
 const SOURCE_ROOT = path.join(__dirname, '../')
 const CLIENT_ROOT = path.join(SOURCE_ROOT, 'client')
 const PROJECT_ROOT = path.join(SOURCE_ROOT, '../')
@@ -22,7 +24,7 @@ log('\n', '========'.repeat(8))
 log('\n', magenta('Logging modules: '), process.env.DEBUG)
 log('\n', '========'.repeat(8), '\n')
 
-// Create express server
+// Create and setup express server
 
 const app = express()
 
@@ -32,7 +34,7 @@ app.use(cors())
 
 // Rest endpoints
 
-require('./routes').default(app)
+app.use('/api/engine', require('./api/engine/routes').default)
 
 // Developer docs
 if (process.env.SERVE_DOCS) {
@@ -49,4 +51,4 @@ app.use(gzip(CLIENT_ROOT))
 app.route('*').get((req, res) => res.sendFile(path.join(CLIENT_ROOT, 'index.html')))
 
 // start server
-app.listen(process.env.PORT, () => log(` Server listening on port ${blue(process.env.PORT)}`))
+app.listen(PORT, () => log(` Server listening on port ${blue(PORT)}`))
