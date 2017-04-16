@@ -29,6 +29,7 @@ function getRandomIntInclusive(min, max) {
 class App extends Component {
   state = {
     results: [],
+    meta: null,
     searching: true,
     loading: false,
     resultToView: null
@@ -38,6 +39,8 @@ class App extends Component {
     this.setState({
       // clear previous result
       results: [],
+      meta: null,
+      resultToView: null,
       searching: true,
       // Start loading
       loading: true
@@ -49,6 +52,10 @@ class App extends Component {
     setTimeout(() => this.setState({
       // disable loading
       loading: false,
+      // add search meta
+      meta: {
+        timeElapsed: 50.20
+      },
       // render result
       results: [
         {
@@ -155,7 +162,7 @@ class App extends Component {
   }
 
   render () {
-    const { searching, results, loading } = this.state
+    const { searching, results, meta, loading } = this.state
     return (
       <MuiThemeProvider>
         <div
@@ -183,6 +190,7 @@ class App extends Component {
           {
             (!_.isEmpty(results) && !loading) &&
             <Results
+              meta={meta}
               data={results}
               onResultSelected={resultToView => this.setState({ resultToView })}
             />

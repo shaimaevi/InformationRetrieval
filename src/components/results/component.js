@@ -37,7 +37,8 @@ class ModuleComponent extends Component {
 
   static propTypes = {
     data: PropTypes.arrayOf(PropTypes.any),
-    onResultSelected: PropTypes.func
+    onResultSelected: PropTypes.func,
+    meta: PropTypes.object
   }
 
   static defaultProps = {
@@ -56,11 +57,11 @@ class ModuleComponent extends Component {
   }
 
   render () {
-    const { data, onResultSelected } = this.props
-    const { currentPage = 1, itemsToView = 10 } = this.state
+    const { data, onResultSelected, meta } = this.props
+    const { currentPage, itemsToView } = this.state
     return (
       <div className={styles.root}>
-        <span> {data.length} Results </span>
+        <span> { data.length } Results in { meta && meta.timeElapsed || 0 } ms </span>
         {
           this.filteredData.map((d, i) =>
             <Result
