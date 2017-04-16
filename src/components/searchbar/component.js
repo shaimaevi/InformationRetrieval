@@ -3,6 +3,7 @@
 
 import React, { Component, PropTypes } from 'react'
 import styles from './style.scss'
+import Paper from 'material-ui/Paper'
 import AutoComplete from 'material-ui/AutoComplete'
 import CircularProgress from 'material-ui/CircularProgress'
 import IconButton from 'material-ui/IconButton'
@@ -48,7 +49,7 @@ class ModuleComponent extends Component {
     const { dataSource, loading } = this.props;
     const { searchString } = this.state;
     return (
-      <div className={styles.root}>
+      <Paper className={styles.root} zDepth={1}>
         <AutoComplete
           hintText='Type anything'
           searchText={searchString}
@@ -56,13 +57,14 @@ class ModuleComponent extends Component {
           onUpdateInput={this.onInputUpdate}
           onNewRequest={this.onSearch}
           fullWidth
+          underlineShow={false}
         />
         {
           loading
             ? <CircularProgress size={20} style={{ marginLeft: 10 }}/>
             : <IconButton onTouchTap={this.onSearch}> <ActionSearch/> </IconButton>
         }
-      </div>
+      </Paper>
     )
   }
 }
