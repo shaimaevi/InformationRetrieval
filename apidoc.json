@@ -1,0 +1,11 @@
+{
+  "name": "Search engine app",
+  "version": "0.1.0",
+  "description": "Search engine app API Documentation",
+  "title": "Search engine",
+  "url" : "https://se.herokuapp.com/api",
+  "header": {
+    "title": "Search engine",
+    "filename": "README.md"
+  }
+}
