@@ -1,7 +1,6 @@
 
 'use strict'
 
-import _ from 'lodash'
 import React, { Component } from 'react'
 import styles from './style.scss'
 import cn from 'classnames'
@@ -20,10 +19,10 @@ const log = require('debug')('components/app/component')
 
 const searching = [ searching1, searching2, searching3 ]
 
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+function getRandomIntInclusive (min, max) {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
 class App extends Component {
@@ -79,7 +78,7 @@ class App extends Component {
           body: `Maraming klase ng mga talata ng Lorem Ipsum and pwedeng magamit, pero ang karamihan ay nabago, dahil sa mga katatawanan, o ang mga ginulong mga salitang mahirap paniwalaan. Kung ikaw ay gagamit ng talata galing Lorem Ipsum, kailangan mong siguraduhin na walang nakakahiyang nakasulat sa gitna nito. Lahat ng mga gumagawa ng Lorem Ipsum sa Internet ay may ugali na ulitin and mga tipak hanggang sa kinakailangan, dahilan upang ito ang maging pinaka unang totoong tagagawa sa Internet, Gumagamit ito ng diksiyunaryo na may humigit 200 na salitang Latin, sinamahan ng isang dakot ng mga modelong pangungusap na straktura, upang makagawa ng Lorem Ipsum na mukang makatwiran. Kaya ang nagawang Lorem Ipsum ay palaging walang nauulit, nakakatawa, o mga walang-katangian na mga salita at iba pa.`
         }
       ]
-    }), 2000);
+    }), 2000)
   }
 
   getSearchbar = () => {
@@ -89,7 +88,7 @@ class App extends Component {
       <div
         className={cn({
           [styles.searchbar]: true,
-          [styles[`searchbar-${searching ? 'searching': 'home'}`]]: true
+          [styles[`searchbar-${searching ? 'searching' : 'home'}`]]: true
         })}
       >
         <div className={styles['searchbar-logo']}>
@@ -99,7 +98,7 @@ class App extends Component {
             alt='Logo'
           />
         </div>
-        <div className={styles[`searchbar-padding-${searching ? 'searching': 'home'}`]}/>
+        <div className={styles[`searchbar-padding-${searching ? 'searching' : 'home'}`]} />
         <div className={styles['searchbar-field']}>
           <SearchBar
             onSearch={this.onSearch}
@@ -168,7 +167,7 @@ class App extends Component {
         <div
           className={cn({
             [styles.root]: true,
-            [styles[`root-${searching ? 'searching': 'home'}`]]: true
+            [styles[`root-${searching ? 'searching' : 'home'}`]]: true
           })}
         >
           {
@@ -180,7 +179,7 @@ class App extends Component {
           }
 
           {
-            searching && <hr className={styles.hr}/>
+            searching && <hr className={styles.hr} />
           }
 
           {

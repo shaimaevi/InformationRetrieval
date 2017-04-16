@@ -31,23 +31,24 @@ class ModuleComponent extends Component {
   }
 
   onSearch = () => {
-    const { onSearch } = this.props;
-    const { searchString } = this.state;
+    const { onSearch } = this.props
+    const { searchString } = this.state
 
     // give the searchString
     onSearch(searchString)
   }
 
-  componentDidUpdate() {
-    const { showEasterEgg } = this.props;
-    const { searchString } = this.state;
-    if (showEasterEgg && /^anything$/i.test(searchString))
-      setTimeout(() => alert('Nice one!'), 200);
+  componentDidUpdate () {
+    const { showEasterEgg } = this.props
+    const { searchString } = this.state
+    if (showEasterEgg && /^anything$/i.test(searchString)) {
+      setTimeout(() => window.alert('Nice one!'), 200)
+    }
   }
 
   render () {
-    const { dataSource, loading } = this.props;
-    const { searchString } = this.state;
+    const { dataSource, loading } = this.props
+    const { searchString } = this.state
     return (
       <Paper className={styles.root} zDepth={1}>
         <AutoComplete
@@ -61,8 +62,8 @@ class ModuleComponent extends Component {
         />
         {
           loading
-            ? <CircularProgress size={20} style={{ marginLeft: 10 }}/>
-            : <IconButton onTouchTap={this.onSearch}> <ActionSearch/> </IconButton>
+            ? <CircularProgress size={20} style={{ marginLeft: 10 }} />
+            : <IconButton onTouchTap={this.onSearch}> <ActionSearch /> </IconButton>
         }
       </Paper>
     )

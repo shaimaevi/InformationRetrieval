@@ -6,7 +6,7 @@ import React, { Component, PropTypes } from 'react'
 import styles from './style.scss'
 import Pagination from 'rc-pagination'
 import Select from 'rc-select'
-import en_US from 'rc-pagination/lib/locale/en_US'
+import enUS from 'rc-pagination/lib/locale/en_US'
 import 'rc-pagination/assets/index.css'
 import 'rc-select/assets/index.css'
 
@@ -46,7 +46,7 @@ class ModuleComponent extends Component {
     onResultSelected: () => {}
   }
 
-  get filteredData() {
+  get filteredData () {
     const { data } = this.props
     const { itemsToView, currentPage } = this.state
 
@@ -60,15 +60,17 @@ class ModuleComponent extends Component {
     const { data, onResultSelected, meta } = this.props
     const { currentPage, itemsToView } = this.state
 
-    if (_.isEmpty(data)) return (
-      <div className={styles['no-result-root']}>
-        <h1> No results </h1>
-      </div>
-    )
+    if (_.isEmpty(data)) {
+      return (
+        <div className={styles['no-result-root']}>
+          <h1> No results </h1>
+        </div>
+      )
+    }
 
     return (
       <div className={styles.root}>
-        <span> { data.length } Results in { meta && meta.timeElapsed || 0 } ms </span>
+        <span> { data.length } Results in { meta ? meta.timeElapsed : 0 } ms </span>
         {
           this.filteredData.map((d, i) =>
             <Result
@@ -82,16 +84,16 @@ class ModuleComponent extends Component {
           <Pagination
             total={data.length}
             showTotal={(total, range) => `${range[0]} - ${range[1]} of ${total} items`}
-            onChange={ currentPage => this.setState({ currentPage }) }
-            current={ currentPage }
+            onChange={currentPage => this.setState({ currentPage })}
+            current={currentPage}
 
             selectComponentClass={Select}
             showSizeChanger
             pageSize={itemsToView}
-            onShowSizeChange={ (currentPage, itemsToView) => this.setState({ currentPage, itemsToView }) }
+            onShowSizeChange={(currentPage, itemsToView) => this.setState({ currentPage, itemsToView })}
 
             pageSizeOptions={itemsToViewChoices.map(i => i.toString())}
-            locale={en_US}
+            locale={enUS}
           />
         </div>
       </div>
