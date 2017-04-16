@@ -16,7 +16,8 @@ class ModuleComponent extends Component {
   static propTypes = {
     onSearch: PropTypes.func,
     dataSource: PropTypes.arrayOf(PropTypes.any),
-    loading: PropTypes.bool
+    loading: PropTypes.bool,
+    showEasterEgg: PropTypes.bool
   }
 
   static defaultProps = {
@@ -34,6 +35,13 @@ class ModuleComponent extends Component {
 
     // give the searchString
     onSearch(searchString)
+  }
+
+  componentDidUpdate() {
+    const { showEasterEgg } = this.props;
+    const { searchString } = this.state;
+    if (showEasterEgg && /^anything$/i.test(searchString))
+      setTimeout(() => alert('Nice one!'), 200);
   }
 
   render () {
