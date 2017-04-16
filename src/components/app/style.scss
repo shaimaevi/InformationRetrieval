@@ -1,8 +1,55 @@
 .root {
   width: 100vw;
   height: 100vh;
-  background-color: red;
+  // background-color: red;
 }
+
+.root-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.searchbar {
+  // background-color: blue;
+  display: flex;
+}
+
+.searchbar-home {
+  min-width: 500px;
+  flex-direction: column;
+}
+
+.searchbar-searching {
+  max-width: 400px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.searchbar-logo {
+  display: flex;
+  justify-content: center;
+  // background-color: violet;
+}
+
+.searchbar-padding-home {
+  height: 10px;
+}
+
+.searchbar-padding-searching {
+  width: 10px;
+}
+
+.results {
+  // background-color: green;
+}
+
+.loading {
+  // background-color: yellow;
+}
+
 /*
 // For Material UI
 button,
