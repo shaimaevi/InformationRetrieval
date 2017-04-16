@@ -4,8 +4,7 @@
 import React, { Component, PropTypes } from 'react'
 import styles from './style.scss'
 import AutoComplete from 'material-ui/AutoComplete'
-
-const log = require('debug')('components/searchbar/component')
+import CircularProgress from 'material-ui/CircularProgress'
 
 class ModuleComponent extends Component {
   state = {
@@ -14,7 +13,8 @@ class ModuleComponent extends Component {
 
   static propTypes = {
     onSearch: PropTypes.func,
-    dataSource: PropTypes.arrayOf(PropTypes.any)
+    dataSource: PropTypes.arrayOf(PropTypes.any),
+    loading: PropTypes.bool
   }
 
   static defaultProps = {
@@ -30,16 +30,13 @@ class ModuleComponent extends Component {
     const { onSearch } = this.props;
     const { searchString } = this.state;
 
-    log('onSearch', searchString)
-
     // give the searchString
     onSearch(searchString)
   }
 
   render () {
-    const { dataSource } = this.props;
+    const { dataSource, loading } = this.props;
     const { searchString } = this.state;
-
     return (
       <div className={styles.root}>
         <AutoComplete
@@ -48,9 +45,11 @@ class ModuleComponent extends Component {
           dataSource={dataSource}
           onUpdateInput={this.onInputUpdate}
           onNewRequest={this.onSearch}
-          floatingLabelText='Full width'
           fullWidth
         />
+        {
+          loading && <CircularProgress size={20}/>
+        }
       </div>
     )
   }

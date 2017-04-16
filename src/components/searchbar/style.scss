@@ -1,4 +1,8 @@
 
 .root {
   font-family: helvetica, arial, sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
 }
