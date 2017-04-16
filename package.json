@@ -5,6 +5,14 @@
   "main": "index.js",
   "author": "John Leonard Tubig <jlu.tubig@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaimaevi/InformationRetrieval.git"
+  },
+  "engines": {
+    "node": "6.10.0",
+    "npm": "3.10.10"
+  },
   "scripts": {
     "__1": "===================================  DOCUMENTATION  ===================================",
     "prebuild:doc:src": "shx rm -rf docs/src",
