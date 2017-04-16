@@ -24,6 +24,8 @@
     "material-ui": "0.17.2",
     "normalize.css": "5.0.0",
     "object-path": "0.11.4",
+    "rc-pagination": "1.8.5",
+    "rc-select": "6.8.2",
     "react": "15.4.2",
     "react-dom": "15.4.2",
     "react-tap-event-plugin": "2.0.1",
