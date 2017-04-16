@@ -5,6 +5,8 @@ import React, { Component, PropTypes } from 'react'
 import styles from './style.scss'
 import AutoComplete from 'material-ui/AutoComplete'
 import CircularProgress from 'material-ui/CircularProgress'
+import IconButton from 'material-ui/IconButton'
+import ActionSearch from 'material-ui/svg-icons/action/search'
 
 class ModuleComponent extends Component {
   state = {
@@ -48,7 +50,9 @@ class ModuleComponent extends Component {
           fullWidth
         />
         {
-          loading && <CircularProgress size={20}/>
+          loading
+            ? <CircularProgress size={20} style={{ marginLeft: 10 }}/>
+            : <IconButton> <ActionSearch/> </IconButton>
         }
       </div>
     )
