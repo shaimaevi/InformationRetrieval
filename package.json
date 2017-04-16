@@ -6,7 +6,7 @@
   "author": "John Leonard Tubig <jlu.tubig@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test:lint": "standard --verbose --parser babel-eslint | snazzy",
+    "test:lint": "standard 'src/**/*.js' --verbose --parser babel-eslint | snazzy",
     "test:unit": "babel-tape-runner src/**/*.spec.js | faucet",
     "test": "run-s test:lint test:unit",
     "prebuild:doc": "shx rm -rf docs",
