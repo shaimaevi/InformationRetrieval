@@ -52,7 +52,7 @@ class ModuleComponent extends Component {
         {
           loading
             ? <CircularProgress size={20} style={{ marginLeft: 10 }}/>
-            : <IconButton> <ActionSearch/> </IconButton>
+            : <IconButton onTouchTap={this.onSearch}> <ActionSearch/> </IconButton>
         }
       </div>
     )
