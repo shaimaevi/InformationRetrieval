@@ -120,7 +120,7 @@ const config = base.merge({
     }),
     // Create icons / manifest
     new FaviconsWebpackPlugin({
-      logo: './src/logo.png',
+      logo: `./${base.CLIENT_SRC_PATH}/logo.png`,
       emitStats: false,
       statsFilename: 'iconstats-[hash].json',
       persistentCache: true,

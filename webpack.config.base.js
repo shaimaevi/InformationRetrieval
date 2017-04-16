@@ -6,13 +6,18 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const CLIENT_SRC_PATH = 'src/client'
+const CLIENT_BLD_PATH = 'dist/client'
+
 module.exports = {
+  CLIENT_SRC_PATH,
+  CLIENT_BLD_PATH,
   // Merge functions
   merge (config) {
     // union arrays instead of overwrite
     const mergeLogic = (oth, src) => Array.isArray(oth) ? _.union(src, oth) : undefined
     // remove the merge function
-    const withoutTheMerge = _.omit(this, ['merge'])
+    const withoutTheMerge = _.omit(this, ['merge', 'CLIENT_SRC_PATH', 'CLIENT_BLD_PATH'])
     // merge config
     return _.mergeWith(withoutTheMerge, config, mergeLogic)
   },
@@ -20,7 +25,7 @@ module.exports = {
   entry: {
     app: [
       // App code
-      './src/index.js'
+      `./${CLIENT_SRC_PATH}/index.js`
     ],
     vendor: [
       // polyfills
@@ -35,14 +40,14 @@ module.exports = {
   // Build output
   output: {
     // build output path
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, CLIENT_BLD_PATH),
     // web-facing root
     publicPath: '/'
   },
   // Module resolving
   resolve: {
     alias: {
-      Components: path.resolve(__dirname, 'src', 'components')
+      Components: path.resolve(__dirname, CLIENT_SRC_PATH, 'components')
     }
   },
   module: {
@@ -66,7 +71,7 @@ module.exports = {
     // Create html
     new HtmlWebpackPlugin({
       title: 'Search engine',
-      template: './src/index.html',
+      template: `./${CLIENT_SRC_PATH}/index.html`,
       chunksSortMode: 'dependency',
       mobile: true,
       minify: {
