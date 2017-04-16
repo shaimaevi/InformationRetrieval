@@ -88,7 +88,7 @@ const config = base.merge({
     }),
     // CSS
     new ExtractTextPlugin({
-      filename: 'bundle.css',
+      filename: 'style-[hash].css',
       disable: false,
       allChunks: true
     }),
@@ -101,7 +101,18 @@ const config = base.merge({
       },
       compress: {
         warnings: false,
-        screw_ie8: true
+        screw_ie8: true,
+        conditionals: true,
+        unused: true,
+        comparisons: true,
+        sequences: true,
+        dead_code: true,
+        evaluate: true,
+        if_return: true,
+        join_vars: true
+      },
+      output: {
+        comments: false
       }
     }),
     // Compress

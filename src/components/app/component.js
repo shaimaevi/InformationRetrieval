@@ -9,7 +9,7 @@ const Component = props => {
   return (
     <MuiThemeProvider>
       <div className={styles.root}>
-        <h3> Sawasdee! App Component Here </h3>
+        <span> Sawasdee! App Component Here </span>
         { props.children }
       </div>
     </MuiThemeProvider>
