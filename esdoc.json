@@ -1,0 +1,17 @@
+{
+  "title": "Mycure functions client app",
+  "source": "src",
+  "destination": "docs/src",
+  "experimentalProposal": {
+    "classProperties": true,
+    "objectRestSpread": true,
+    "decorators": true,
+    "doExpressions": true,
+    "functionBind": true,
+    "asyncGenerators": true,
+    "exportExtensions": true,
+    "dynamicImport": true
+  },
+  "index": "./README.md",
+  "package": "./package.json"
+}

@@ -1,0 +1,30 @@
+# IntelliJ project files
+.idea
+
+# VSCode project files
+.vscode
+
+# Nodejs
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# Build
+functions/
+build/
+dist/
+docs/
+.env
+stats-*
+src/dll
+
+# Wiki, separate repo
+wiki/
+
+# Firebase
+firebase-debug*
+src/config.json
+config.json
+database.rules.json
+database.bolt
+.firebaserc
