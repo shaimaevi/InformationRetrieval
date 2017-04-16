@@ -29,10 +29,7 @@ module.exports = {
       'react-tap-event-plugin',
       // react
       'react',
-      'react-dom',
-      // router
-      'react-router-dom',
-      'history/createBrowserHistory'
+      'react-dom'
     ]
   },
   // Build output
