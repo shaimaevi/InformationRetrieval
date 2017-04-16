@@ -18,7 +18,7 @@
     "prebuild:doc:src": "shx rm -rf docs/src",
     "build:doc:src": "esdoc -c esdoc.json",
     "prebuild:doc:api": "shx rm -rf docs/api",
-    "build:doc:api": "apidoc -i src -o docs/api -f \".*\\.routes.js$\" -f \".*\\.apidoc.js$\"",
+    "build:doc:api": "apidoc -i src -o docs/api -f \".*\\.?routes.js$\" -f \".*\\.?apidoc.js$\"",
     "__2": "=======================================  CLIENT  ======================================",
     "client:test:lint": "standard 'src/client/**/*.js' --verbose --parser babel-eslint | snazzy",
     "client:test:unit": "babel-tape-runner src/client/**/*.spec.js | faucet",
