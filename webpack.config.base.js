@@ -70,7 +70,7 @@ module.exports = {
     }),
     // Create html
     new HtmlWebpackPlugin({
-      title: 'Mycure v3',
+      title: 'Search engine',
       template: './src/index.html',
       chunksSortMode: 'dependency',
       mobile: true,
