@@ -15,6 +15,10 @@ const Result = props => {
     <div className={styles['res-root']}>
       <a onTouchTap={props.onTitleClicked}> <h1> { props.title } </h1> </a>
       <span> by <span> { props.author } </span> </span>
+      <br/>
+      <span> for {props.bookTitle} by {props.bookAuthor} </span>
+      <br/>
+      <span> relevance: { props.score } </span>
       <p>
         {
           _.truncate(props.body, {
