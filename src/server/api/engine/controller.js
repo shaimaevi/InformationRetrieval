@@ -1,10 +1,17 @@
 
 'use strict'
 
+import _ from 'lodash'
 import connection from './connection'
 
+const log = require('debug')('api/engine/controller')
+
 export function search (searchString, options) {
-  const MATCH_STRING = `MATCH(reviews.title, body) AGAINST('${searchString}')`
+  const keywords = _.words(searchString).map(k => `+${k}`).join(' ')
+
+  log(`keywords for searchString '${searchString}' '${keywords}'`)
+
+  const MATCH_STRING = `MATCH(reviews.title, body) AGAINST('${keywords}')`
   return new Promise((resolve, reject) => {
     // Fancy querying here
     connection.query({
