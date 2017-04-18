@@ -30,7 +30,7 @@
     "server:test:lint": "standard 'src/server/**/*.js' --verbose --parser babel-eslint | snazzy",
     "server:test:unit": "babel-tape-runner src/server/**/*.spec.js | faucet",
     "prebuild:server": "shx rm -rf dist/server",
-    "build:server": "babel src -d dist/server -s --copy-files",
+    "build:server": "babel src/server -d dist/server -s --copy-files",
     "dev:server": "nodemon --watch 'src/server/**/*.js' --exec npm run start:dev",
     "__4": "=======================================  START  =======================================",
     "start:dev": "node --require dotenv/config --require babel-register src/server/index.js",
@@ -41,7 +41,7 @@
     "test:lint": "run-s client:test:unit server:test:unit",
     "test": "run-s test:lint test:unit",
     "build:doc": "run-p build:doc:*",
-    "build": "run-p build:server build:client"
+    "build": "run-s build:server build:client"
   },
   "dependencies": {
     "bluebird": "3.5.0",
