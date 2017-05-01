@@ -11,22 +11,42 @@ import 'rc-pagination/assets/index.css'
 import 'rc-select/assets/index.css'
 
 const Result = props => {
+  function isAKeyword (str) {
+    return _.words(props.searchString).find(r => new RegExp(r, 'i').test(str))
+  }
   return (
     <div className={styles['res-root']}>
-      <a onTouchTap={props.onTitleClicked}> <h1> { props.title } </h1> </a>
+      <a onTouchTap={props.onTitleClicked}>
+        <h1>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: _.split(_.truncate(props.title, { length: 350, separator: ' ' }), ' ')
+                .map(
+                  r => isAKeyword(r)
+                    ? `<span style="color:red;text-decoration:solid;"> ${r} </span>`
+                    : r
+                )
+                .join(' ')
+            }}
+          />
+        </h1>
+      </a>
       <span> by <span> { props.author } </span> </span>
       <br/>
       <span> for {props.bookTitle} by {props.bookAuthor} </span>
       <br/>
       <span> relevance: { props.score } </span>
-      <p>
-        {
-          _.truncate(props.body, {
-            length: 350,
-            separator: ' '
-          })
-        }
-      </p>
+      <div
+          dangerouslySetInnerHTML={{
+            __html: _.split(_.truncate(props.body, { length: 350, separator: ' ' }), ' ')
+              .map(
+                r => isAKeyword(r)
+                  ? `<span style="color:red;text-decoration:solid;"> ${r} </span>`
+                  : r
+              )
+              .join(' ')
+          }}
+        />
     </div>
   )
 }
@@ -61,7 +81,7 @@ class ModuleComponent extends Component {
   }
 
   render () {
-    const { data, onResultSelected, meta } = this.props
+    const { data, onResultSelected, meta, searchString } = this.props
     const { currentPage, itemsToView } = this.state
 
     if (_.isEmpty(data)) {
@@ -80,6 +100,7 @@ class ModuleComponent extends Component {
             <Result
               key={i}
               {...d}
+              searchString={searchString}
               onTitleClicked={() => onResultSelected(d)}
             />
           )

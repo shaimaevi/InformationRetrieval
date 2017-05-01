@@ -147,7 +147,6 @@ class App extends Component {
     const handleClose = () => this.setState({ resultToView: null })
 
     function isAKeyword (str) {
-      console.log(searchString)
       return _.words(searchString).find(r => new RegExp(r, 'i').test(str))
     }
 
@@ -199,7 +198,7 @@ class App extends Component {
   }
 
   render () {
-    const { searching, results, meta, loading } = this.state
+    const { searching, results, meta, loading, searchString } = this.state
     return (
       <MuiThemeProvider>
         <div
@@ -227,6 +226,7 @@ class App extends Component {
           {
             (searching && !loading) &&
             <Results
+              searchString={searchString}
               meta={meta}
               data={results}
               onResultSelected={resultToView => this.setState({ resultToView })}
