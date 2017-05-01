@@ -16,7 +16,7 @@ export function search (searchString, options) {
   const SQL_STRING = `SELECT r.id as id, r.title as title, r.body as body, r.author as author, b.title as bookTitle, b.author as bookAuthor, ${MATCH_STRING} as score ` +
                      `FROM reviews as r JOIN books as b ON r.book_id=b.id WHERE ${MATCH_STRING} ORDER BY score DESC`
 
-  log(SQL_STRING)
+  // log(SQL_STRING)
 
   return new Promise((resolve, reject) => {
     // Fancy querying here
