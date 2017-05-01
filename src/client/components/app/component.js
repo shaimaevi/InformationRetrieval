@@ -158,7 +158,11 @@ class App extends Component {
         autoScrollBodyContent
         onRequestClose={handleClose}
       >
+        <br/>
         <span> by <span> { resultToView.author } </span> </span>
+        <br/>
+        <span> for {resultToView.bookTitle} by {resultToView.bookAuthor} </span>
+        <br/>
         <p>
           { resultToView.body }
         </p>
