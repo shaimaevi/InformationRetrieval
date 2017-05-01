@@ -32,7 +32,8 @@ class App extends Component {
     meta: null,
     searching: false,
     loading: false,
-    resultToView: null
+    resultToView: null,
+    searchString: ''
   }
 
   onSearch = (searchString) => {
@@ -43,7 +44,8 @@ class App extends Component {
       resultToView: null,
       searching: true,
       // Start loading
-      loading: true
+      loading: true,
+      searchString
     })
 
     log('onSearch', searchString)
@@ -138,15 +140,33 @@ class App extends Component {
   }
 
   getResultViewer = () => {
-    const { resultToView } = this.state
+    const { resultToView, searchString } = this.state
 
     if (!resultToView) return
 
     const handleClose = () => this.setState({ resultToView: null })
 
+    function isAKeyword (str) {
+      console.log(searchString)
+      return _.words(searchString).find(r => new RegExp(r, 'i').test(str))
+    }
+
     return (
       <Dialog
-        title={resultToView.title}
+        // title={resultToView.title}
+        title={
+          <div
+            dangerouslySetInnerHTML={{
+              __html: _.split(resultToView.title, ' ')
+                .map(
+                  r => isAKeyword(r)
+                    ? `<span style="color:red;text-decoration:solid;"> ${r} </span>`
+                    : r
+                )
+                .join(' ')
+            }}
+          />
+        }
         actions={[
           <FlatButton
             label='Close'
@@ -163,9 +183,17 @@ class App extends Component {
         <br/>
         <span> for {resultToView.bookTitle} by {resultToView.bookAuthor} </span>
         <br/>
-        <p>
-          { resultToView.body }
-        </p>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: _.split(resultToView.body, ' ')
+              .map(
+                r => isAKeyword(r)
+                  ? `<span style="color:red;text-decoration:solid;"> ${r} </span>`
+                  : r
+              )
+              .join(' ')
+          }}
+        />
       </Dialog>
     )
   }

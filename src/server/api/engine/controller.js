@@ -6,8 +6,25 @@ import connection from './connection'
 
 const log = require('debug')('api/engine/controller')
 
-export function search (searchString, options) {
-  const keywords = _.words(searchString).map(k => `${k}`).join(' ')
+export async function search (searchString) {
+  const result =
+    // and'd search
+    await executeSearch(searchString, { and: true }) ||
+    // fallback to or'd search
+    await executeSearch(searchString, { and: false })
+
+  return result
+}
+
+function executeSearch (searchString, options) {
+  const { and } = options || {}
+
+  const keywords = _.words(searchString)
+    .map(k => and
+      ? `+${k}`   // and'd
+      : k         // or'd
+    )
+    .join(' ')
 
   const MATCH_STRING = `MATCH(r.title, r.body) AGAINST('${keywords}')`
 
